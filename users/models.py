@@ -34,6 +34,7 @@ class Profile(BaseModel):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profiles')
     website = models.URLField(blank=True, null=True)
     bio = models.TextField()
+
     gender = models.CharField(max_length=32, choices=Gender.choices, default=Gender.PREFER_NOT_TO_SAY)
     suggestions = models.BooleanField(default=True)
     is_private = models.BooleanField(default=False)

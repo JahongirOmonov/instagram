@@ -15,6 +15,7 @@ class Post(BaseModel):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='post_profiles')
     district = models.ForeignKey(District, on_delete=models.CASCADE, related_name='post_districts')
     description = models.TextField()
+
     like = models.ManyToManyField(Profile, related_name='post_likes', blank=True)
     accessibility = models.CharField(max_length=63)
     hide_like_view = models.BooleanField(default=False)
@@ -26,6 +27,7 @@ class Post(BaseModel):
 class Content(BaseModel):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='contents_profile')
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='contents')
+
     like = models.ManyToManyField(Profile, related_name='contents_like', blank=True)
     comment = models.TextField()
     parent = models.ManyToManyField('self', related_name='children')
